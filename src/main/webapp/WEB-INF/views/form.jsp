@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+	<%@page isELIgnored="false" %>
+	
 <!doctype html>
 <html lang="en">
 <head>
@@ -30,7 +33,7 @@
 		<form action="handelForm" method="post">
 			<div class="text-center my-3" style="font-size: 80px; color:#e74c3c">
 				<span class="text-center"><i class="fa fa-user-circle"></i></span>
-			    <h3 class="">Registration Form</h3>
+			    <h3 class="">${hader}</h3>
 			</div>
 			
 			<div class="my-3 pt-3">
