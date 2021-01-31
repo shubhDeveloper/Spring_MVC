@@ -1,5 +1,6 @@
 package com.springmvc.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,20 +9,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springmvc.entity.User;
+import com.springmvc.service.UserService;
 
 @Controller
 public class DataController {
+	@Autowired
+	UserService userService;
 
 	@RequestMapping("/form")
 	public String formData() {
 
 		System.out.println("New form control");
 		return "/form";
+	} 
+	 
+	// Use of model attribute common method for all controllers
+	@ModelAttribute
+	public void common(Model model) {
+		model.addAttribute("hader", "User Registration");
 	}
 
-	/*
-	 * 
-	 * // Traditional way of fetching data
+	// Using Model Attribute
+	@RequestMapping(path = "handelForm", method = RequestMethod.POST)
+	public String handelForm(@ModelAttribute User user, Model model) {
+
+		System.out.println(user.getFname());
+		this.userService.createUser(user);
+		// go to success page
+		return "/success";
+	}
+	
+	
+	/* 
+	 // Traditional way of fetching data
 	 * 
 	 * @RequestMapping(path = "/handelForm",method = RequestMethod.POST) public
 	 * String formHandel(HttpServletRequest request) { String parameter =
@@ -59,19 +79,6 @@ public class DataController {
 	 * 
 	 */
 
-	// Use of model attribute common method for all controllers
-	@ModelAttribute
-	public void common(Model model) {
-		model.addAttribute("hader", "SpringWithShubh");
-	}
-
-	// Using Model Attribute
-	@RequestMapping(path = "handelForm", method = RequestMethod.POST)
-	public String handelForm(@ModelAttribute User user, Model model) {
-
-		System.out.println(user.getFname());
-		// go to success page
-		return "/success";
-	}
+	
 
 }
