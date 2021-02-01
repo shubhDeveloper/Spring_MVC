@@ -75,6 +75,7 @@
 		<property name="sessionFactory" ref="factory" />
 	</bean>
 
+<!-- For spring Mvc -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		name="viewResolver">

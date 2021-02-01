@@ -16,10 +16,10 @@ public class DataController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping("/form")
+	@RequestMapping("/formCtr")
 	public String formData() {
 
-		System.out.println("New form control");
+		System.out.println("New form control"); 
 		return "/form";
 	} 
 	 
@@ -35,6 +35,12 @@ public class DataController {
 
 		System.out.println(user.getFname());
 		this.userService.createUser(user);
+		//validation
+				if(user.getFname().isBlank()) {
+					System.out.println("null field");
+					return "redirect:/formCtr";
+				}
+		
 		// go to success page
 		return "/success";
 	}
