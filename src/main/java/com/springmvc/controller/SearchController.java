@@ -21,7 +21,7 @@ public class SearchController {
 		
 		System.out.println(search);
 		RedirectView redirectView = new RedirectView();
-		redirectView.setUrl("https://duckduckgo.com/?q="+search);
+		redirectView.setUrl("https://duckduckgo.com/?q="+ search);
 		System.out.println("search h called");
 		return redirectView;
 	}
